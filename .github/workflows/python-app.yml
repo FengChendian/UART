@@ -26,7 +26,7 @@ jobs:
         pip install PyQt5 pyinstaller numpy==1.19.3 matplotlib pyserial serial
     - name: Build project # This would actually build your project, using zip for an example artifact
       run: |
-         pyinstaller -F ./mainWindow.py -n uart
+         pyinstaller -F -w -i ./icon/title.ico ./mainWindow.py -n uart
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
