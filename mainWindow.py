@@ -24,7 +24,7 @@ class MainAPP(QWidget):
 
         self.setWindowTitle("UART")
 
-        self.setWindowIcon(QIcon("./icon/icon.png"))
+        # self.setWindowIcon(QIcon("./icon/icon.png"))
 
         self.button()
 
