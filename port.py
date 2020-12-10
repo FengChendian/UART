@@ -1,3 +1,4 @@
+from os import times
 from PyQt5.QtWidgets import QMessageBox
 import serial
 import serial.tools.list_ports
@@ -15,7 +16,7 @@ class Port():
 
         self.sample = 12500 / 1.66
         self.data_size = 256
-        self.bandradte = 115200
+        self.bandradte = 2962962
         self.ser = None
         
 
@@ -48,7 +49,8 @@ class Port():
 
         data = np.array([])
 
-        # ser.flush()
+
+        # times.sleep(0.01)
         self.align()
         for i in range(0, self.data_size):
             data = np.append(data, float(self.ser.readline()[0:-2]))
@@ -56,14 +58,17 @@ class Port():
 
         return data
 
-    def fetchDataElement_uint8(self):
+    def fetchDataElement_uint8(self, dataSize=1000):
         if(self.ser.isOpen() is False):
             self.openPort()
-
+        # self.ser.flush()
+        # self.ser.reset_output_buffer()
+        self.ser.reset_input_buffer()
         # self.align()
         data = []
-        for i in range(0, 1000):
+        for i in range(0, dataSize):
             data.append(int.from_bytes(self.ser.read(size=1), byteorder='big', signed=False))
+            # print(data[-1])
         return data
         
 

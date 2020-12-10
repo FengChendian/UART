@@ -8,6 +8,8 @@ from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QMessageBox, QWidge
 
 from PyQt5.QtGui import QIcon
 
+from settings import Settings
+
 
 class MainAPP(QWidget):
     def __init__(self):
@@ -106,8 +108,14 @@ class MainAPP(QWidget):
             QMessageBox.information(self, '提示', '连接成功', QMessageBox.Ok)
     
     def settingAction(self):
-        QMessageBox.information(self, '提示', '正在建设', QMessageBox.Ok)
- 
+        # QMessageBox.information(self, '提示', '正在建设', QMessageBox.Ok)
+        self.settings = Settings(self.port)
+        self.settings.show()
+    
+    @staticmethod
+    def refresh():
+        QApplication.processEvents()
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     a = MainAPP()
