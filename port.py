@@ -18,9 +18,9 @@ class Port():
         self.data_size = 256
         self.bandradte = 2962962
         self.ser = None
-        
 
     # 打开串口
+
     def openPort(self):
         uart_port = None
         for i in self.port_lists:
@@ -31,7 +31,7 @@ class Port():
 
         if uart_port is not None:
             self.ser = serial.Serial(uart_port, self.bandradte, timeout=0.8, stopbits=serial.STOPBITS_ONE,
-                                 parity=serial.PARITY_EVEN, bytesize=serial.EIGHTBITS)
+                                     parity=serial.PARITY_EVEN, bytesize=serial.EIGHTBITS)
             return True
         else:
             return False
@@ -43,19 +43,11 @@ class Port():
             if('Start' in str(self.ser.readline())):
                 break
 
-    def align_uint8(self):
-        while True:
-            # print('A' in str(ser.readline()))
-            a = str(self.ser.readline())
-            if('Start' in a):
-                print(a)
-
     def fetchDataElement(self):
         if(self.ser.isOpen() is False):
             self.openPort()
 
         data = np.array([])
-
 
         # times.sleep(0.01)
         self.align()
@@ -74,10 +66,10 @@ class Port():
         self.align()
         data = []
         for i in range(0, dataSize):
-            data.append(int.from_bytes(self.ser.read(size=1), byteorder='big', signed=False))
+            data.append(int.from_bytes(self.ser.read(
+                size=1), byteorder='big', signed=False))
             # print(data[-1])
         return data
-        
 
     def spectrum_one_figure(self):
         data = self.fetchDataElement()
@@ -97,7 +89,6 @@ class Port():
                    extent=[0, 1, 0, 1], origin='lower')
         plt.colorbar()
         plt.show()
-
 
     # port = serial.Serial("c")
 if __name__ == '__main__':

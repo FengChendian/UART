@@ -1,4 +1,4 @@
-import  datetime
+import datetime
 import sys
 
 from PyQt5 import QtWidgets
@@ -53,14 +53,14 @@ class adcWindow(QWidget):
         vBox.addWidget(self.collection)
         self.setLayout(vBox)
         self.show()
-    
+
     def initPort(self):
-        
+
         if(self.port.ser is None):
             result = self.port.openPort()
             if result is False:
-                QMessageBox.information(self, '提示', '自动连接串口失败\n请点击连接串口手动连接', QMessageBox.Ok)
-
+                QMessageBox.information(
+                    self, '提示', '自动连接串口失败\n请点击连接串口手动连接', QMessageBox.Ok)
 
     def select(self):
         self.directory = QtWidgets.QFileDialog.getExistingDirectory(
@@ -72,11 +72,12 @@ class adcWindow(QWidget):
         plt.figure()
         plt.plot(data)
         # print(self.directory)
-        fp = open(self.directory + '/'+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.txt', mode='w')
+        fp = open(self.directory + '/' +
+                  datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.txt', mode='w')
         # print(data[2])
-        fp.writelines('\n'.join(list(map(str,data))))
+        fp.writelines('\n'.join(list(map(str, data))))
         plt.show()
-        
+
     def dataSizeChange(self, i):
         self.dataSize = int(self.dataSizeList[i])
         # print(self.dataSize)

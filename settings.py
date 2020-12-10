@@ -3,8 +3,9 @@
 from port import Port
 from PyQt5.QtWidgets import QApplication, QComboBox, QHBoxLayout, QLabel, QWidget
 
+
 class Settings(QWidget):
-    def __init__(self,port:Port):
+    def __init__(self, port: Port):
         super().__init__()
         self.setWindowTitle('设置')
         self.bandRateList = ['2962962', '115200']
@@ -16,8 +17,7 @@ class Settings(QWidget):
         self.baundRateButton = QComboBox()
         self.baundRateButton.addItems(self.bandRateList)
         self.baundRateButton.setEnabled(False)
-        
-        
+
         hbox = QHBoxLayout()
         hbox.addWidget(self.baundRateLabel)
         hbox.addWidget(self.baundRateButton)
@@ -29,4 +29,3 @@ class Settings(QWidget):
         # QApplication.processEvents()
         # self.main.statusText()
         # MainAPP.refresh()
-        

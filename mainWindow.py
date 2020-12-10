@@ -83,7 +83,8 @@ class MainAPP(QWidget):
         self.setLayout(hbox)
 
     def statusText(self):
-        status = '当前配置\n波特率 ' + str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8'
+        status = '当前配置\n波特率 ' + \
+            str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8\nADC采样精度 8bit'
         return status
 
     def spectrumAction(self):
@@ -92,11 +93,11 @@ class MainAPP(QWidget):
             self.port.spectrum_one_figure()
             # self.spectrum.setEnabled(False)
 
-    def colorMapAction(self):    
+    def colorMapAction(self):
         if self.spectrum.isEnabled():
             self.port.colormap()
 
-    def adcAction(self):  
+    def adcAction(self):
         self.ADC_Window = adcWindow(self.port)
         self.ADC_Window.show()
         # QtWidgets.QFileDialog.getExistingDirectory(self, "@2", "./")
@@ -106,15 +107,16 @@ class MainAPP(QWidget):
             self.port.openPort()
         if(self.port.ser.isOpen()):
             QMessageBox.information(self, '提示', '连接成功', QMessageBox.Ok)
-    
+
     def settingAction(self):
         # QMessageBox.information(self, '提示', '正在建设', QMessageBox.Ok)
         self.settings = Settings(self.port)
         self.settings.show()
-    
+
     @staticmethod
     def refresh():
         QApplication.processEvents()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
