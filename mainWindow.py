@@ -83,7 +83,7 @@ class MainAPP(QWidget):
         self.setLayout(hbox)
 
     def statusText(self):
-        status = '当前配置\n波特率' + str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8'
+        status = '当前配置\n波特率 ' + str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8'
         return status
 
     def spectrumAction(self):
@@ -102,7 +102,7 @@ class MainAPP(QWidget):
         # QtWidgets.QFileDialog.getExistingDirectory(self, "@2", "./")
 
     def connect(self):
-        if(self.port.ser == None or self.port.ser.isOpen() is False):
+        if(self.port.ser is None or self.port.ser.isOpen() is False):
             self.port.openPort()
         if(self.port.ser.isOpen()):
             QMessageBox.information(self, '提示', '连接成功', QMessageBox.Ok)
