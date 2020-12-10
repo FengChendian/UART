@@ -83,7 +83,7 @@ class MainAPP(QWidget):
         self.setLayout(hbox)
 
     def statusText(self):
-        status = '当前配置\n波特率' + str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8'
+        status = '当前配置\n波特率 ' + str(self.port.bandradte) + '\n停止位 1\nADC数据接收类型 uint8'
         return status
 
     def spectrumAction(self):

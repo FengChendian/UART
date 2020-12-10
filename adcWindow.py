@@ -59,7 +59,7 @@ class adcWindow(QWidget):
         if(self.port.ser is None):
             result = self.port.openPort()
             if result is False:
-                QMessageBox.information(self, '提示', '自动连接串口失败\n请手动连接', QMessageBox.Ok)
+                QMessageBox.information(self, '提示', '自动连接串口失败\n请点击连接串口手动连接', QMessageBox.Ok)
 
 
     def select(self):
