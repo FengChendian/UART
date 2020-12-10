@@ -43,6 +43,13 @@ class Port():
             if('Start' in str(self.ser.readline())):
                 break
 
+    def align_uint8(self):
+        while True:
+            # print('A' in str(ser.readline()))
+            a = str(self.ser.readline())
+            if('Start' in a):
+                print(a)
+
     def fetchDataElement(self):
         if(self.ser.isOpen() is False):
             self.openPort()
@@ -64,7 +71,7 @@ class Port():
         # self.ser.flush()
         # self.ser.reset_output_buffer()
         self.ser.reset_input_buffer()
-        # self.align()
+        self.align()
         data = []
         for i in range(0, dataSize):
             data.append(int.from_bytes(self.ser.read(size=1), byteorder='big', signed=False))
