@@ -102,7 +102,7 @@ class MainAPP(QWidget):
         # QtWidgets.QFileDialog.getExistingDirectory(self, "@2", "./")
 
     def connect(self):
-        if(self.port.ser == None or self.port.ser.isOpen() is False):
+        if(self.port.ser is None or self.port.ser.isOpen() is False):
             self.port.openPort()
         if(self.port.ser.isOpen()):
             QMessageBox.information(self, '提示', '连接成功', QMessageBox.Ok)

@@ -14,7 +14,7 @@ from PyQt5.QtGui import QIcon
 class adcWindow(QWidget):
     def __init__(self, port: port.Port):
         super().__init__()
-        self.directory = 'C:/data'
+        self.directory = './'
         self.dataSizeList = ['10000', '2000', '3000']
         self.dataSize = int(self.dataSizeList[0])
         self.port = port
@@ -71,8 +71,8 @@ class adcWindow(QWidget):
         data = self.port.fetchDataElement_uint8(dataSize=self.dataSize)
         plt.figure()
         plt.plot(data)
-        
-        fp = open(datetime.datetime.now().strftime('%Y-%m-%d') + '.txt', mode='w')
+        # print(self.directory)
+        fp = open(self.directory + '/'+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.txt', mode='w')
         # print(data[2])
         fp.writelines('\n'.join(list(map(str,data))))
         plt.show()
